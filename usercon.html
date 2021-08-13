@@ -1,0 +1,49 @@
+<?php
+$con=mysqli_connect('localhost','root','');
+if(!$con)
+{
+echo "Not Connect to server ";
+}
+if(!mysqli_select_db($con,'user'))
+{
+echo "Data not Connected ";
+}
+$fname=$_POST['fname'];
+$lname=$_POST['lname'];
+$mail=$_POST['mail'];
+$gen=$_POST['gen'];
+$pass=$_POST['pass'];
+$cpass=$_POST['conpass'];
+$img=$_POST['img'];
+$dob=$_POST['dob'];
+$hoby=$_POST['hoby'];
+echo "first name is $fname <br>";
+echo "Last name is $lname <br>";
+echo "Gender is $gen <br>";
+echo "Mail iD is $mail <br>";
+echo "pass is $pass <br>";
+echo "Confirm password $cpass <br>";
+echo " DOB is $dob <br>";
+echo " Hobby is $hoby <br>";
+echo "image id $img ";
+if($pass==$cpass)
+{
+echo "<br>pass Matched <br>";
+$sql="INSERT INTO userinfo(First Name, Last Name,Email, PassWord,Confirm
+PassWord,DOB,Gender,Hobbiey,Image) VALUES
+('$fname','$lname','$mail','$pass','$cpass','$dob','$gen','$hoby','$img')";
+if(!mysqli_query($con,$sql))
+{
+echo "<br>data Not inserted ";
+}
+else
+{
+echo "Inserted ";
+}
+}
+else
+{
+echo "Pass Word Mismatch ";
+}
+header("refresh:3; url=form.html")
+?>
